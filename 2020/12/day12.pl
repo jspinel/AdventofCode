@@ -33,10 +33,10 @@ while (my $line = <$fh>){
 	
 	$bearing += $value if ($action eq "R");
 	$bearing -= $value if ($action eq "L");
-	
-	
-
 }
+close $fh;
+
 
 print("Part 1: ", abs($pos[0]) + abs($pos[1]), "\n");
 print ($pos[0], " ", $pos[1]);
+
