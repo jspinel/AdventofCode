@@ -15,8 +15,9 @@ close $fh;
 
 # Get the input into variables 
 my ($timestamp, $departures) = @input;
-my @buses = sort split(/,/, $departures);
-
+my @buses = split(/,/, $departures);
+my @buses2 = @buses;
+@buses = sort @buses;
 while ($buses[-1] eq "x"){
     pop @buses;
 }
@@ -41,43 +42,28 @@ while ($departure == 0){
 
 
 print ("Part 1: ", $id*$time, "\n");
+
+
 ## PART 2
-$departures =~ s/x,//g;
-@buses = split(/,/, $departures);
+my %busNum;
+
+for (my $index = 0; $index < $#buses2; $index++){
+    unless ($buses2[$index] eq "x"){
+        print("Index: $index\n");
+    }
+    
+}
+
 
 $departure = 0;
 $timestamp =100000000000000;
 $time = $timestamp;
 my $step = 1;
-while ($departure == 0){
-    $timestamp = $time;
-    if ($time % $buses[0] == 0){
-        $step = $buses[0];
-        if(++$time % $buses[1] == 0){            
-            $step = $buses[0]*$buses[1];
-            if(++$time % $buses[2] == 0){
-                $step = $buses[0]*$buses[1]*$buses[2];
-                if (++$time % $buses[3] == 0){
-                    $step = $buses[0]*$buses[1]*$buses[2]*$buses[3];
-                    if (++$time % $buses[4] == 0){
-                        $step = $buses[0]*$buses[1]*$buses[2]*$buses[3]*$buses[4];
-                        $departure = 1;
-                    }
-                }
-            }
-        }
-    }
-    if ($departure == 1){
-        $departure = 0;
-        if(++$time % $buses[5]== 0){
-            if(++$time % $buses[6] == 0){
-                if(++$time % $buses[7] == 0){
-                    print("Hit Level 8 yo!\n");
-                    print("At time: ", $time, "\n");
-                    $departure = 1;
-                }
-            }
-        }        
-    }
-    $time = $timestamp + $step;
+
+foreach (sort keys %busNum){
+    print("$_\n");
+
+
 }
+
+
