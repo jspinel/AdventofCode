@@ -37,7 +37,7 @@ while ($departure == 0){
         }
     }
     $time++ if $departure == 0;
-    print ("Timestamp: ", $time, "\n") if ($time % $timestamp == 0);
+
 }
 
 
@@ -57,7 +57,7 @@ for (my $index = 0; $index <= $#buses2; $index++){
 $time = 0;
 my $period = 1;
 
-my $departure = 0;
+$departure = 0;
 
 foreach (sort{$a<=>$b} keys %busNum){
     print("Index, $_\n");
