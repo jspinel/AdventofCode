@@ -47,23 +47,34 @@ print ("Part 1: ", $id*$time, "\n");
 ## PART 2
 my %busNum;
 
-for (my $index = 0; $index < $#buses2; $index++){
+for (my $index = 0; $index <= $#buses2; $index++){
     unless ($buses2[$index] eq "x"){
-        print("Index: $index\n");
+        $busNum{$index} = $buses2[$index];
     }
     
 }
 
+$time = 0;
+my $period = 1;
 
-$departure = 0;
-$timestamp =100000000000000;
-$time = $timestamp;
-my $step = 1;
+my $departure = 0;
 
-foreach (sort keys %busNum){
-    print("$_\n");
-
+foreach (sort{$a<=>$b} keys %busNum){
+    print("Index, $_\n");
+    $departure = 0;
+    while ($departure == 0){
+        if (($time +$_) % $busNum{$_} == 0){
+            print("Hit level $_ at time $time\n");
+            $departure++
+        }
+        else{
+            $time += $period;
+        }
+    }
+    $period *= $busNum{$_};
 
 }
 
-
+  
+    
+    
