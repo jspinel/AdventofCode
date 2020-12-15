@@ -11,9 +11,9 @@ open (my $fh, '<', 'input.txt');
 while (my $line = <$fh>){
 	chomp $line;
 	
-	$bearing = $bearing % 360;  #add / substract 
+	$bearing = $bearing % 360;  #Correct Bearing
 	
-	$line =~ /([A-Z])(\d+)/;
+	$line =~ /([A-Z])(\d+)/;  #Get action & value
 	my ($action, $value) = ($1, $2);
 	
 	if ($action eq "F")
