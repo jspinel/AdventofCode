@@ -27,29 +27,21 @@ while (my $line = <$fh>){
         $line =~ s/(\d+)//;
         my $val = $1;
         # Convert val to binary representation
-        print("KEY: $key\n");
-        print("This is   mask @mask\n");
         my $bin = sprintf("%b", $val);
-        print("Binary: $bin\n");
-        
-        #~ # Place Val in an array so we can do char by char comparison
+        # Place Val in an array so we can do char by char comparison
         my @val = split(//, $bin);
-        
-        print("Before resizing @val\n");
-        #~ # Make @val the same size as @mask
+        # Make @val the same size as @mask
         while ($#val < 35){
             unshift(@val, 0);
         }
-        print("After Resizing @val\n");
-        
-        for (my $i = 0; $i == 35; $i++){
-            next if($mask[$i] eq "X");
-            $val[$i] = $mask[$i];
+               
+        foreach (0..35){           
+            next if $mask[$_] eq "X";
+            $val[$_] = $mask[$_];
         }
-        print("after     mask @val\n");
+        
         $val = join('', @val);
-        $val = oct($val);
-        print("$val\n");
+        $val = oct("0b".$val);
         $mem{$key} = $val;
     }    
 }
@@ -62,3 +54,4 @@ foreach (keys %mem){
     print("Key: $_, Val: $mem{$_}\n");
 }
 
+print("SUM: $sum\n");
