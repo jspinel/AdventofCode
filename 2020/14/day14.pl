@@ -51,7 +51,8 @@ close($fh);
 my $sum = 0;
 foreach (keys %mem){
     $sum += $mem{$_};
-    print("Key: $_, Val: $mem{$_}\n");
 }
 
 print("SUM: $sum\n");
+
+
