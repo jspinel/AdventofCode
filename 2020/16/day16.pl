@@ -44,7 +44,7 @@ while (my $line = <$fh>){
         push(@validTicks, $line) if ($valid == 1);
         
     }
-    
+    git a
 }
 close $fh;
 
